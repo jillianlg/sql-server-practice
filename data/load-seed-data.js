@@ -40,7 +40,7 @@ async function run() {
   catch(err) {
     console.log(err);
   }
-  finally {
+  finally {eve
     client.end();
   }
     
