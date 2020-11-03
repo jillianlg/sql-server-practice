@@ -31,31 +31,81 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test('returns animals', async () => {
+    test('returns females', async() => {
 
       const expectation = [
         {
-          'id': 1,
-          'name': 'bessie',
-          'coolfactor': 3,
-          'owner_id': 1
+          id: 1,
+          name: 'Wonder Woman',
+          evil_factor: 0,
+          feature_film: true,
+          publisher: 'DC Comics',
+          owner_id: 1,
         },
         {
-          'id': 2,
-          'name': 'jumpy',
-          'coolfactor': 4,
-          'owner_id': 1
+          id: 2,
+          name: 'Black Widow',
+          evil_factor: 2,
+          feature_film: true,
+          publisher: 'Marvel',
+          owner_id: 1,
         },
         {
-          'id': 3,
-          'name': 'spot',
-          'coolfactor': 10,
-          'owner_id': 1
-        }
+          id: 3,
+          name: 'Captin Marvel',
+          evil_factor: 0,
+          feature_film: true,
+          publisher: 'Marvel',
+          owner_id: 1,
+        },
+        {
+          id: 4,
+          name: 'Poison Ivy',
+          evil_factor: 9,
+          feature_film: false,
+          publisher: 'DC Comics',
+          owner_id: 1,
+        },
+        {
+          id: 5,
+          name: 'Tank Girl',
+          evil_factor: 2,
+          feature_film: true,
+          publisher: 'Dark Horse',
+          owner_id: 1,
+        },
+        {
+          id: 6,
+          name: 'Mystique',
+          evil_factor: 6,
+          feature_film: false,
+          publisher: 'Marvel',
+          owner_id: 1,
+        },
       ];
 
       const data = await fakeRequest(app)
-        .get('/animals')
+        .get('/females')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+    test('returns a single female', async() => {
+
+      const expectation = 
+        {
+          id: 1,
+          name: 'Wonder Woman',
+          evil_factor: 0,
+          feature_film: true,
+          publisher: 'DC Comics',
+          owner_id: 1,
+        };
+
+      const data = await fakeRequest(app)
+        .get('/females/1')
         .expect('Content-Type', /json/)
         .expect(200);
 
