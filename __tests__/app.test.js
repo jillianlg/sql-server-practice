@@ -160,7 +160,36 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-  
+
+    // DELETE test
+    test('deletes one female  from data and returns the remaining data array', async() => {
+
+      const expectation = 
+        {
+          id: 7,
+          name: 'Storm',
+          evil_factor: 2,
+          feature_film: false,
+          publisher: 'Marvel',
+          owner_id: 1,
+        };
+
+      const deletedData = await fakeRequest(app)
+        .delete('/females/7')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allFemales = await fakeRequest(app)
+        .get('/females')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(deletedData.body).toEqual(expectation);
+      expect(allFemales.body.length).toEqual(6);
+
+      
+    });
+
   });
 // last set of }); are missing from bootstrap
 });
