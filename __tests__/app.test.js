@@ -111,7 +111,7 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-
+// POST test
     test('add new female', async() => {
 
       const expectation = 
@@ -120,7 +120,7 @@ describe('app routes', () => {
           name: 'Storm',
           evil_factor: 2,
           feature_film: false,
-          publisher: 'MArvel',
+          publisher: 'Marvel',
           owner_id: 1,
         };
 
@@ -138,6 +138,29 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
       expect(allFemales.body.length).toEqual(7);
     });
+
+    // PUT test
+    test('update females data', async() => {
+
+      const expectation = [
+        {
+          id: 7,
+          name: 'Storm',
+          evil_factor: 2,
+          feature_film: false,
+          publisher: 'Marvel',
+          owner_id: 1,
+        },
+      ];
+
+      const data = await fakeRequest(app)
+        .put('/females/7')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+  
   });
 // last set of }); are missing from bootstrap
 });
