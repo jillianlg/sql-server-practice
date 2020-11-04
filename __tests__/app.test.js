@@ -142,7 +142,7 @@ describe('app routes', () => {
     // PUT test
     test('update females data', async() => {
 
-      const expectation = [
+      const expectation = 
         {
           id: 7,
           name: 'Storm',
@@ -150,11 +150,11 @@ describe('app routes', () => {
           feature_film: false,
           publisher: 'Marvel',
           owner_id: 1,
-        },
-      ];
+        };
 
       const data = await fakeRequest(app)
         .put('/females/7')
+        .send(expectation)
         .expect('Content-Type', /json/)
         .expect(200);
 
