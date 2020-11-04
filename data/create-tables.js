@@ -16,13 +16,17 @@ async function run() {
                     id SERIAL PRIMARY KEY,
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
-                );           
+                );    
+                CREATE TABLE publishers (
+                  id SERIAL PRIMARY KEY,
+                  publisher VARCHAR(256) NOT NULL
+              );        
                 CREATE TABLE females (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
                     evil_factor INTEGER NOT NULL,
                     feature_film BOOLEAN NOT NULL,
-                    publisher VARCHAR(256) NOT NULL,
+                    publisher_id INTEGER NOT NULL REFERENCES publishers(id),
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
