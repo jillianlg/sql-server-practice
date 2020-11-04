@@ -1,4 +1,4 @@
-export const publishers = [
+module.exports = [
   {
     publisher: 'Marvel',
   },
