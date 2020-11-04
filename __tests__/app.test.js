@@ -111,6 +111,33 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
+
+    test('add new female', async() => {
+
+      const expectation = 
+        {
+          id: 1,
+          name: 'Storm',
+          evil_factor: 2,
+          feature_film: false,
+          publisher: 'MArvel',
+          owner_id: 1,
+        };
+
+      const data = await fakeRequest(app)
+        .post('/females')
+        .send(expectation)
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const allFemales = await fakeRequest(app)
+        .get('/females')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+      expect(allFemales.body.length).toEqual(7);
+    });
   });
 // last set of }); are missing from bootstrap
 });
