@@ -39,7 +39,7 @@ describe('app routes', () => {
           name: 'Wonder Woman',
           evil_factor: 0,
           feature_film: true,
-          publisher: 'DC Comics',
+          publisher_id: 2,
           owner_id: 1,
         },
         {
@@ -111,7 +111,8 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-// POST test
+
+    // POST test
     test('add new female', async() => {
 
       const expectation = 
