@@ -116,7 +116,7 @@ describe('app routes', () => {
 
       const expectation = 
         {
-          id: 1,
+          id: 7,
           name: 'Storm',
           evil_factor: 2,
           feature_film: false,
