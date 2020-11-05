@@ -163,7 +163,7 @@ describe('app routes', () => {
     });
 
     // DELETE test
-    test.only('deletes one female from data and returns the remaining data array', async() => {
+    test('deletes one female from data and returns the remaining data array', async() => {
 
       const expectation = 
         {
