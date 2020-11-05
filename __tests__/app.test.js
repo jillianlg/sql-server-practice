@@ -31,7 +31,7 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test('returns females', async() => {
+    test('returns All females in data', async() => {
 
       const expectation = [
         {
@@ -39,7 +39,7 @@ describe('app routes', () => {
           name: 'Wonder Woman',
           evil_factor: 0,
           feature_film: true,
-          publisher: 'DC Comics',
+          publisher_id: 2,
           owner_id: 1,
         },
         {
@@ -47,7 +47,7 @@ describe('app routes', () => {
           name: 'Black Widow',
           evil_factor: 2,
           feature_film: true,
-          publisher: 'Marvel',
+          publisher_id: 1,
           owner_id: 1,
         },
         {
@@ -55,7 +55,7 @@ describe('app routes', () => {
           name: 'Captin Marvel',
           evil_factor: 0,
           feature_film: true,
-          publisher: 'Marvel',
+          publisher_id: 1,
           owner_id: 1,
         },
         {
@@ -63,7 +63,7 @@ describe('app routes', () => {
           name: 'Poison Ivy',
           evil_factor: 9,
           feature_film: false,
-          publisher: 'DC Comics',
+          publisher_id: 2,
           owner_id: 1,
         },
         {
@@ -71,7 +71,7 @@ describe('app routes', () => {
           name: 'Tank Girl',
           evil_factor: 2,
           feature_film: true,
-          publisher: 'Dark Horse',
+          publisher_id: 3,
           owner_id: 1,
         },
         {
@@ -79,7 +79,7 @@ describe('app routes', () => {
           name: 'Mystique',
           evil_factor: 6,
           feature_film: false,
-          publisher: 'Marvel',
+          publisher_id: 1,
           owner_id: 1,
         },
       ];
@@ -92,7 +92,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-    test('returns a single female', async() => {
+    test('returns one female by id from data', async() => {
 
       const expectation = 
         {
@@ -100,8 +100,8 @@ describe('app routes', () => {
           name: 'Wonder Woman',
           evil_factor: 0,
           feature_film: true,
-          publisher: 'DC Comics',
-          owner_id: 1,
+          publisher_id: 2,
+          owner_id: 1
         };
 
       const data = await fakeRequest(app)
@@ -111,8 +111,9 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-// POST test
-    test('add new female', async() => {
+
+    // POST test
+    test('adds new female data to end of array', async() => {
 
       const expectation = 
         {
@@ -120,7 +121,7 @@ describe('app routes', () => {
           name: 'Storm',
           evil_factor: 2,
           feature_film: false,
-          publisher: 'Marvel',
+          publisher_id: 1,
           owner_id: 1,
         };
 
@@ -140,7 +141,7 @@ describe('app routes', () => {
     });
 
     // PUT test
-    test('update females data', async() => {
+    test('update a single data item for one female in data', async() => {
 
       const expectation = 
         {
@@ -148,7 +149,7 @@ describe('app routes', () => {
           name: 'Storm',
           evil_factor: 2,
           feature_film: false,
-          publisher: 'Marvel',
+          publisher_id: 1,
           owner_id: 1,
         };
 
@@ -162,7 +163,7 @@ describe('app routes', () => {
     });
 
     // DELETE test
-    test('deletes one female  from data and returns the remaining data array', async() => {
+    test('deletes one female from data and returns the remaining data array', async() => {
 
       const expectation = 
         {
@@ -170,7 +171,7 @@ describe('app routes', () => {
           name: 'Storm',
           evil_factor: 2,
           feature_film: false,
-          publisher: 'Marvel',
+          publisher_id: 1,
           owner_id: 1,
         };
 

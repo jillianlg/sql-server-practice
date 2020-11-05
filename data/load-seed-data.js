@@ -1,6 +1,7 @@
 const client = require('../lib/client');
 // import our seed data:
 const females = require('./female-characters.js');
+const publishers = require('./publishers.js');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 
@@ -25,12 +26,23 @@ async function run() {
     const user = users[0].rows[0];
 
     await Promise.all(
+      publishers.map(item => {
+        return client.query(`
+                      INSERT INTO publishers (publisher)
+                      VALUES ($1)
+                      RETURNING *;
+                  `,
+        [item.publisher]);
+      })
+    );
+
+    await Promise.all(
       females.map(females => {
         return client.query(`
-                    INSERT INTO females (name, evil_factor, feature_film, publisher, owner_id)
+                    INSERT INTO females (name, evil_factor, feature_film, publisher_id, owner_id)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-        [females.name, females.evil_factor, females.feature_film, females.publisher, user.id]);
+        [females.name, females.evil_factor, females.feature_film, females.publisher_id, user.id]);
       })
     );
     
